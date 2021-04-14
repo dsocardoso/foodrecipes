@@ -1,0 +1,150 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "br.com.dsocardoso.foodrecipes"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+def coordinatorLayout  = '1.1.0'
+def materialComponents = '1.3.0-alpha03'
+def navigationFragmentKtx = '2.3.0'
+def navigationUiKtx = '2.3.0'
+def roomRuntime = '2.2.5'
+def roomCompiler = '2.2.5'
+def roomKtx = '2.2.5'
+def roomTesting = '2.2.5'
+def databindingCompiler = '3.2.0-alpha10'
+def databindingCommon = '4.1.0'
+def dataStore = '1.0.0-alpha01'
+def recyclerView  = '1.1.0'
+def retrofit = '2.9.0'
+def retrofitGson = '2.9.0'
+def daggerHilt = '2.28-alpha'
+def daggerHiltCompiler = '2.28-alpha'
+def hiltLifecycleViewModel = '1.0.0-alpha02'
+def hiltCompiler = '1.0.0-alpha02'
+def coroutinesCore = '1.3.9'
+def coroutinesAndroid = '1.3.9'
+def lifecycleExtensions = '2.2.0'
+def lifecycleRuntime = '2.2.0'
+def lifecycleViewModel = '2.2.0'
+def lifecycleLiveData = '2.2.0'
+def imageLoadingCoil = 'coil:0.13.0'
+def gson = '2.8.6'
+def shimmer = '0.5.0'
+def shimmerRecyclerView = '0.4.0'
+def jsoup = '1.13.1'
+
+
+
+
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Coordinator Layout
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$coordinatorLayout"
+
+    // Material Components
+    implementation "com.google.android.material:material:$materialComponents"
+
+    // Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragmentKtx"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0:$navigationUiKtx"
+
+    // Room components
+    implementation "androidx.room:room-runtime:$roomRuntime"
+    kapt "androidx.room:room-compiler:$roomCompiler"
+    implementation "androidx.room:room-ktx:$roomKtx"
+    androidTestImplementation "androidx.room:room-testing:$roomTesting"
+
+    // Data binding
+    kapt "com.android.databinding:compiler:$databindingCompiler"
+    kapt "androidx.databinding:databinding-common:$databindingCommon"
+
+    // DataStore
+    implementation "androidx.datastore:datastore-preferences:$dataStore"
+
+    // Recyclerview
+    implementation "androidx.recyclerview:recyclerview:$recyclerView"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitGson"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$daggerHilt"
+    kapt "com.google.dagger:hilt-android-compiler:$daggerHiltCompiler"
+
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleViewModel"
+    kapt "androidx.hilt:hilt-compiler:$hiltCompiler"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesCore"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroid"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntime"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModel"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLiveData"
+
+    // Image Loading library Coil
+    implementation "io.coil-kt:coil:$imageLoadingCoil"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$gson"
+
+    // Shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmer"
+    implementation "com.todkars:shimmer-recyclerview:$shimmerRecyclerView"
+
+    // Jsoup
+    implementation "org.jsoup:jsoup:$jsoup"
+
+}
