@@ -135,7 +135,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLiveData"
 
     // Image Loading library Coil
-    implementation "io.coil-kt:coil:$imageLoadingCoil"
+    implementation("io.coil-kt:coil:$imageLoadingCoil")
 
     // Gson
     implementation "com.google.code.gson:gson:$gson"
