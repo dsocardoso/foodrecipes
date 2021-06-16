@@ -1,4 +1,4 @@
 package br.com.dsocardoso.foodrecipes
 
-class RemoteDataSource() {
+class MyApplication {
 }
