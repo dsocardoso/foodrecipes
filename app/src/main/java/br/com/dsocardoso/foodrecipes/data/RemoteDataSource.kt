@@ -1,5 +1,6 @@
-package br.com.dsocardoso.foodrecipes
+package br.com.dsocardoso.foodrecipes.data
 
+import br.com.dsocardoso.foodrecipes.data.network.FoodRecipesApi
 import br.com.dsocardoso.foodrecipes.model.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject

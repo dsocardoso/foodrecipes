@@ -1,4 +1,4 @@
-package br.com.dsocardoso.foodrecipes.data
+package br.com.dsocardoso.foodrecipes.data.network
 
 import br.com.dsocardoso.foodrecipes.model.FoodRecipe
 import retrofit2.Response
