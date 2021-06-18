@@ -10,19 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.dsocardoso.foodrecipes.viewmodels.MainViewModel
-import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.adapters.RecipesAdapter
-import br.com.dsocardoso.foodrecipes.util.Constants.Companion.API_KEY
+import br.com.dsocardoso.foodrecipes.databinding.FragmentRecipesBinding
 import br.com.dsocardoso.foodrecipes.util.NetworkResult
 import br.com.dsocardoso.foodrecipes.util.observeOnce
+import br.com.dsocardoso.foodrecipes.viewmodels.MainViewModel
 import br.com.dsocardoso.foodrecipes.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
+
     /*
         Notas:
         Quando utilizamos o by lazy, é permitir a inicialização do property na primeira vez que
@@ -31,10 +30,12 @@ class RecipesFragment : Fragment() {
         escopo só será executado durante a inicialização. Ah, e ele obriga o uso do val
      */
 
+    private var _binding: FragmentRecipesBinding? = null
+    private val binding get() = _binding
+
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private val mAdapter by lazy { RecipesAdapter() }
-    private lateinit var mView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +48,20 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_recipes, container, false)
+        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+        binding?.lifecycleOwner = this
+        binding?.mainViewModel = mainViewModel
         setupRecyclerView()
 
         // requisicao dos dados da api
         readDatabase()
-        mView.recyclerview.showShimmer()
-        return mView
+
+        return binding?.root!!
     }
 
     private fun setupRecyclerView() {
-        mView.recyclerview.adapter = mAdapter
-        mView.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding?.recyclerview!!.adapter = mAdapter
+        binding?.recyclerview!!.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
@@ -112,11 +115,15 @@ class RecipesFragment : Fragment() {
     }
 
     private fun showShimmerEffect() {
-        mView.recyclerview.showShimmer()
+        binding?.recyclerview!!.showShimmer()
     }
 
     private fun hideShimmerEffect() {
-        mView.recyclerview.hideShimmer()
+        binding?.recyclerview!!.hideShimmer()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
