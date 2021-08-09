@@ -10,14 +10,14 @@ import br.com.dsocardoso.foodrecipes.util.Constants.Companion.QUERY_FILL_INGREDI
 import br.com.dsocardoso.foodrecipes.util.Constants.Companion.QUERY_NUMBER
 import br.com.dsocardoso.foodrecipes.util.Constants.Companion.QUERY_TYPE
 
-class RecipesViewModel(application: Application): AndroidViewModel(application){
+class RecipesViewModel(application: Application) : AndroidViewModel(application) {
 
-     fun applyQueries(): HashMap<String, String> {
+    fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[QUERY_NUMBER] = "50"
+        queries[QUERY_NUMBER] = Constants.DEFAULT_RECIPES_NUMBER
         queries[QUERY_API_KEY] = Constants.API_KEY
-        queries[QUERY_TYPE] = "main course"
-        queries[QUERY_DIET] = "gluten free"
+        queries[QUERY_TYPE] = Constants.DEFAULT_MEAL_TYPE
+        queries[QUERY_DIET] = Constants.DEFAULT_DIET_TYPE
         queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
         queries[QUERY_FILL_INGREDIENTS] = "true"
 
