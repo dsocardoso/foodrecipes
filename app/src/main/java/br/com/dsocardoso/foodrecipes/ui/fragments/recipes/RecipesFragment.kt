@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.adapters.RecipesAdapter
 import br.com.dsocardoso.foodrecipes.databinding.FragmentRecipesBinding
 import br.com.dsocardoso.foodrecipes.util.NetworkResult
@@ -31,7 +33,7 @@ class RecipesFragment : Fragment() {
      */
 
     private var _binding: FragmentRecipesBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
@@ -49,19 +51,24 @@ class RecipesFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
-        binding?.lifecycleOwner = this
-        binding?.mainViewModel = mainViewModel
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
         setupRecyclerView()
 
         // requisicao dos dados da api
         readDatabase()
 
-        return binding?.root!!
+        // float action button
+        binding.recipesFab.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+        }
+
+        return binding.root
     }
 
     private fun setupRecyclerView() {
-        binding?.recyclerview!!.adapter = mAdapter
-        binding?.recyclerview!!.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.adapter = mAdapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
         showShimmerEffect()
     }
 
