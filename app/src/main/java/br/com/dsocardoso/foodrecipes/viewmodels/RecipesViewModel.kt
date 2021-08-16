@@ -1,8 +1,10 @@
 package br.com.dsocardoso.foodrecipes.viewmodels
 
 import android.app.Application
+import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.dsocardoso.foodrecipes.data.DataStoreRepository
 import br.com.dsocardoso.foodrecipes.util.Constants
@@ -26,11 +28,20 @@ class RecipesViewModel @ViewModelInject constructor(
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
 
+    var networkStatus = false
+    var backOnline = false
+
     val readMealAndDietType = dataStoreRespository.readMealAndDietType
+    val readBackOnline = dataStoreRespository.readBackOnline.asLiveData()
 
     fun saveMealAndDietType(mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int) =
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRespository.saveMealAndDietType(mealType, mealTypeId, dietType, dietTypeId)
+        }
+
+    fun saveBackOnline(backOnline: Boolean) =
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreRespository.saveBackOnline(backOnline)
         }
 
     fun applyQueries(): HashMap<String, String> {
@@ -51,5 +62,17 @@ class RecipesViewModel @ViewModelInject constructor(
         queries[QUERY_FILL_INGREDIENTS] = "true"
 
         return queries
+    }
+
+    fun showNetworkStatus() {
+        if (!networkStatus) {
+            Toast.makeText(getApplication(), "No Internet Connection", Toast.LENGTH_LONG).show()
+            saveBackOnline(true)
+        } else if (networkStatus) {
+            if (backOnline) {
+                Toast.makeText(getApplication(), "Internet Avaliable", Toast.LENGTH_LONG).show()
+                saveBackOnline(false)
+            }
+        }
     }
 }
