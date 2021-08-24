@@ -12,6 +12,7 @@ import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.model.Result
 import br.com.dsocardoso.foodrecipes.ui.fragments.recipes.RecipesFragmentDirections
 import coil.load
+import org.jsoup.Jsoup
 
 class RecipesRowBinding {
     companion object {
@@ -73,6 +74,15 @@ class RecipesRowBinding {
                         )
                     }
                 }
+            }
+        }
+
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+        fun parseHtml(textView: TextView, description: String?) {
+            if(description != null) {
+                val desc = Jsoup.parse(description).text()
+                textView.text = desc
             }
         }
     }
