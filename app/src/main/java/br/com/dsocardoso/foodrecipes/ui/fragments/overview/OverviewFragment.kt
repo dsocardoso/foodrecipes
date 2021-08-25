@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.model.Result
+import br.com.dsocardoso.foodrecipes.util.Constants.Companion.RECIPE_RESULT_KEY
 import coil.load
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.jsoup.Jsoup
@@ -24,7 +25,7 @@ class OverviewFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_overview, container, false)
 
         val args = arguments
-        val myBundle: Result? = args?.getParcelable("recipeBundle")
+        val myBundle: Result? = args?.getParcelable(RECIPE_RESULT_KEY)
 
         setFields(view, myBundle)
 

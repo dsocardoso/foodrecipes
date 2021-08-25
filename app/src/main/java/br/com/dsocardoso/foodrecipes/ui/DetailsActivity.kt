@@ -11,6 +11,7 @@ import br.com.dsocardoso.foodrecipes.adapters.PagerAdapter
 import br.com.dsocardoso.foodrecipes.ui.fragments.ingredients.IngredientsFragment
 import br.com.dsocardoso.foodrecipes.ui.fragments.instructions.InstructionsFragment
 import br.com.dsocardoso.foodrecipes.ui.fragments.overview.OverviewFragment
+import br.com.dsocardoso.foodrecipes.util.Constants.Companion.RECIPE_RESULT_KEY
 import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class DetailsActivity : AppCompatActivity() {
         titles.add("Instructions")
 
         val resultBundle = Bundle()
-        resultBundle.putParcelable("recipeBundle", args.result)
+        resultBundle.putParcelable(RECIPE_RESULT_KEY, args.result)
 
         val adapter = PagerAdapter(
             resultBundle,
