@@ -1,4 +1,4 @@
-package br.com.dsocardoso.foodrecipes.data.database
+package br.com.dsocardoso.foodrecipes.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

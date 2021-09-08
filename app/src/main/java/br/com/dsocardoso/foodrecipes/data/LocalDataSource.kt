@@ -1,7 +1,7 @@
 package br.com.dsocardoso.foodrecipes.data
 
 import br.com.dsocardoso.foodrecipes.data.database.RecipesDAO
-import br.com.dsocardoso.foodrecipes.data.database.RecipesEntity
+import br.com.dsocardoso.foodrecipes.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

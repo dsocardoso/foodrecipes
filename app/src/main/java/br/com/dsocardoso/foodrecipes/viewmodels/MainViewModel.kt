@@ -8,9 +8,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.data.Repository
-import br.com.dsocardoso.foodrecipes.data.database.RecipesEntity
+import br.com.dsocardoso.foodrecipes.data.database.entities.RecipesEntity
 import br.com.dsocardoso.foodrecipes.model.FoodRecipe
 import br.com.dsocardoso.foodrecipes.util.NetworkResult
 import kotlinx.coroutines.Dispatchers
