@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import br.com.dsocardoso.foodrecipes.data.Repository
+import br.com.dsocardoso.foodrecipes.data.database.entities.FavoritiesEntity
 import br.com.dsocardoso.foodrecipes.data.database.entities.RecipesEntity
 import br.com.dsocardoso.foodrecipes.model.FoodRecipe
 import br.com.dsocardoso.foodrecipes.util.NetworkResult
@@ -24,11 +25,27 @@ class MainViewModel @ViewModelInject constructor(
 
     // ROOM DATABASE
 
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoritiesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRecipes(recipesEntity)
+        }
+
+    fun insertFavoriteRecipe(favoritiesEntity: FavoritiesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoritiesEntity)
+        }
+
+    fun deleteFavoriteRecipe(favoritiesEntity: FavoritiesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoriteRecipes(favoritiesEntity)
+        }
+
+    private fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
         }
 
 

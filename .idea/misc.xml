@@ -14,11 +14,13 @@
         <entry key="app/src/main/res/layout/ingredients_row_layout.xml" value="0.5" />
         <entry key="app/src/main/res/layout/recipes_bottom_sheet.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recipes_row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/details_menu.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/recipes_menu.xml" value="0.34791666666666665" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
