@@ -84,7 +84,7 @@ class DetailsActivity : AppCompatActivity() {
         mainViewModel.readFavoriteRecipes.observe(this,{ favoritiesEntity ->
             try {
                 for (savedRecipes in favoritiesEntity) {
-                    if(savedRecipes.result.id == args.result.id) {
+                    if(savedRecipes.result.recipeid == args.result.recipeid) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipes.id
                         recipeSaved = true
