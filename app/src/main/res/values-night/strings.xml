@@ -34,4 +34,7 @@
     <string name="no_favorite_recipes">No Favorite Recipes</string>
     <string name="delete_favorite_menu">Delete Favorite Menu</string>
     <string name="delete_all">Delete All</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectur adipiscing elit.Lorem ipsum dolor sit amet, consectur adipiscing elit.</string>
+    <string name="it_s_not_possible_load_message">It\'s not possible load message</string>
+    <string name="sad_face_indicating_that_it_s_not_possible_load_data">Sad face indicating that it\'s not possible load data</string>
 </resources>
