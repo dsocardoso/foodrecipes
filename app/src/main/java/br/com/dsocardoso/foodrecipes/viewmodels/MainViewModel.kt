@@ -16,7 +16,6 @@ import br.com.dsocardoso.foodrecipes.util.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.lang.Exception
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
@@ -26,7 +25,8 @@ class MainViewModel @ViewModelInject constructor(
     // ROOM DATABASE
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
-    val readFavoriteRecipes: LiveData<List<FavoritiesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoritiesEntity>> =
+        repository.local.readFavoriteRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,7 +43,7 @@ class MainViewModel @ViewModelInject constructor(
             repository.local.deleteFavoriteRecipes(favoritiesEntity)
         }
 
-    private fun deleteAllFavoriteRecipes() =
+    fun deleteAllFavoriteRecipes() =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteAllFavoriteRecipes()
         }
@@ -63,13 +63,13 @@ class MainViewModel @ViewModelInject constructor(
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         recipesResponse.value = NetworkResult.Loading()
-        if(hasInternetConnection()){
+        if (hasInternetConnection()) {
             try {
                 val response = repository.remote.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
 
                 val foodRecipe = recipesResponse.value!!.data
-                if(foodRecipe != null) {
+                if (foodRecipe != null) {
                     offlineCacheRecipes(foodRecipe)
                 }
             } catch (e: Exception) {
@@ -82,7 +82,7 @@ class MainViewModel @ViewModelInject constructor(
 
     private suspend fun getSearchRecipesSafeCall(searchQuery: Map<String, String>) {
         searchRecipesResponse.value = NetworkResult.Loading()
-        if(hasInternetConnection()){
+        if (hasInternetConnection()) {
             try {
                 val response = repository.remote.searchRecipes(searchQuery)
                 searchRecipesResponse.value = handleFoodRecipesResponse(response)
@@ -116,7 +116,7 @@ class MainViewModel @ViewModelInject constructor(
                 return NetworkResult.Success(foodRecipes!!)
             }
             else -> {
-                return  NetworkResult.Error(response.message())
+                return NetworkResult.Error(response.message())
             }
         }
     }
