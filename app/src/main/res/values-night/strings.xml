@@ -37,4 +37,5 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectur adipiscing elit.Lorem ipsum dolor sit amet, consectur adipiscing elit.</string>
     <string name="it_s_not_possible_load_message">It\'s not possible load message</string>
     <string name="sad_face_indicating_that_it_s_not_possible_load_data">Sad face indicating that it\'s not possible load data</string>
+    <string name="share">Share</string>
 </resources>
