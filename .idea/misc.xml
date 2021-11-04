@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_splash_screen_light.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout-night/fragment_food_joke.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28894927536231885" />
         <entry key="app/src/main/res/layout/favorite_recipes_row_layout.xml" value="0.2907608695652174" />
         <entry key="app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/fragment_food_joke.xml" value="0.33" />
