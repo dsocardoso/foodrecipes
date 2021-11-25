@@ -1,11 +1,11 @@
 package br.com.dsocardoso.foodrecipes.di
 
-import br.com.dsocardoso.foodrecipes.util.Constants.Companion.BASE_URL
 import br.com.dsocardoso.foodrecipes.data.network.FoodRecipesApi
+import br.com.dsocardoso.foodrecipes.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Singleton
