@@ -122,7 +122,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun readDatabase() {
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenResumed {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "readDatabase called!")
