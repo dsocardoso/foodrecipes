@@ -1,6 +1,7 @@
 package br.com.dsocardoso.foodrecipes.model
 
 import android.os.Parcelable
+import androidx.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -12,7 +13,7 @@ data class ExtendedIngredient(
     @SerializedName("consistency")
     val consistency: String,
     @SerializedName("image")
-    val image: String,
+    val image: String?,
     @SerializedName("name")
     val name: String,
     @SerializedName("original")

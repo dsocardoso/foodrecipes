@@ -1,5 +1,6 @@
 package br.com.dsocardoso.foodrecipes.di
 
+import br.com.dsocardoso.foodrecipes.BuildConfig.HTTP_CLIENT_LOG
 import br.com.dsocardoso.foodrecipes.data.network.FoodRecipesApi
 import br.com.dsocardoso.foodrecipes.util.Constants.Companion.BASE_URL
 import dagger.Module
@@ -7,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -19,9 +21,14 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideHttpClient(): OkHttpClient {
+        val logging = HttpLoggingInterceptor()
+        logging.level =
+            if (HTTP_CLIENT_LOG) HttpLoggingInterceptor.Level.BODY
+            else HttpLoggingInterceptor.Level.NONE
         return OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
+            .addInterceptor(logging)
             .build()
     }
 
