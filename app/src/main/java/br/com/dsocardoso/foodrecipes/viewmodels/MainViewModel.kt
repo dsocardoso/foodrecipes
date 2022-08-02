@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import br.com.dsocardoso.foodrecipes.data.Repository
 import br.com.dsocardoso.foodrecipes.data.database.entities.FavoritiesEntity
@@ -57,7 +56,6 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteAllFavoriteRecipes()
         }
-
 
     /** -- >> RETROFIT << -- */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
@@ -117,7 +115,7 @@ class MainViewModel @Inject constructor(
                 foodJokeResponse.value = handleFoodJokeResponse(response)
 
                 val foodJoke = foodJokeResponse.value!!.data
-                if(foodJoke != null) {
+                if (foodJoke != null) {
                     offlineCacheFoodJoke(foodJoke)
                 }
             } catch (e: Exception) {
@@ -127,7 +125,6 @@ class MainViewModel @Inject constructor(
             foodJokeResponse.value = NetworkResult.Error("No internet connection.")
         }
     }
-
 
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
         val recipesEntity = RecipesEntity(foodRecipe)
@@ -193,5 +190,4 @@ class MainViewModel @Inject constructor(
             else -> false
         }
     }
-
 }

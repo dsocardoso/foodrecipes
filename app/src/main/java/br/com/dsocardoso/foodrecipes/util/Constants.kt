@@ -18,8 +18,8 @@ class Constants {
         const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
         const val QUERY_FILL_INGREDIENTS = "fillIngredients"
 
-        //ROOM Database
-        const val DATABASE_NAME= "recipes_database"
+        // ROOM Database
+        const val DATABASE_NAME = "recipes_database"
         const val RECIPES_TABLE = "recipes_table"
         const val FAVORITIES_RECIPES_TABLE = "favorities_recipes_table"
         const val FOOD_JOKE_TABLE = "food_joke_table"
@@ -37,6 +37,4 @@ class Constants {
 
         const val PREFERENCES_BACK_ONLINE = "backOnline"
     }
-
-
 }

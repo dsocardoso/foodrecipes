@@ -1,7 +1,6 @@
 package br.com.dsocardoso.foodrecipes.model
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -21,4 +20,4 @@ data class ExtendedIngredient(
     @SerializedName("unit")
     val unit: String
 
-): Parcelable
+) : Parcelable

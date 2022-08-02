@@ -13,12 +13,11 @@ import coil.load
 import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.jsoup.Jsoup
 
-
 class OverviewFragment : Fragment() {
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -136,5 +135,4 @@ class OverviewFragment : Fragment() {
             }
         }
     }
-
 }

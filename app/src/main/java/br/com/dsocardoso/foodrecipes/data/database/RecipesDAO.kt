@@ -32,5 +32,4 @@ interface RecipesDAO {
 
     @Query("DELETE FROM favorities_recipes_table")
     suspend fun deleteAllFavoriteRecipes()
-
 }

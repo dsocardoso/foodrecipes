@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.recipes_bottom_sheet.view.*
 import java.lang.Exception
 import java.util.*
 
-
 class RecipesBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var recipesViewModel: RecipesViewModel
@@ -35,7 +34,8 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -77,14 +77,13 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         return mView
     }
 
-    private fun updateChip(chipId: Int, chipGroup: ChipGroup){
-        if(chipId != 0){
+    private fun updateChip(chipId: Int, chipGroup: ChipGroup) {
+        if (chipId != 0) {
             try {
                 chipGroup.findViewById<Chip>(chipId).isChecked = true
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("RecipesBottomSheet", e.message.toString().toLowerCase(Locale.ROOT))
             }
         }
     }
-
 }

@@ -24,11 +24,12 @@ class FavoriteRecipesFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentFavoriteRecipesBinding.inflate(inflater,container,false)
+        _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
         binding.mAdapter = mAdapter
@@ -48,7 +49,7 @@ class FavoriteRecipesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.delete_All_favorite_recipes_menu) {
+        if (item.itemId == R.id.delete_All_favorite_recipes_menu) {
             mainViewModel.deleteAllFavoriteRecipes()
             showSnackBar("All favorites recipes was deleted.")
         }
@@ -71,7 +72,7 @@ class FavoriteRecipesFragment : Fragment() {
             binding.root,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Ok"){}
+        ).setAction("Ok") {}
             .show()
     }
 }

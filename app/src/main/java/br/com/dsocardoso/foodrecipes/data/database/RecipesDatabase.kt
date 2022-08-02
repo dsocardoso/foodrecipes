@@ -17,5 +17,4 @@ import br.com.dsocardoso.foodrecipes.data.database.entities.RecipesEntity
 abstract class RecipesDatabase : RoomDatabase() {
 
     abstract fun recipesDao(): RecipesDAO
-
 }

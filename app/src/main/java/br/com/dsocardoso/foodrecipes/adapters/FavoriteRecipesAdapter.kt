@@ -28,7 +28,6 @@ class FavoriteRecipesAdapter(
     private var myViewHolders = arrayListOf<MyViewHolder>()
     private var favoriteRecipes = emptyList<FavoritiesEntity>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder.from(parent)
     }
@@ -58,7 +57,7 @@ class FavoriteRecipesAdapter(
          * Long Click Listener
          */
         holder.itemView.favoriteRecipesRowLayout.setOnLongClickListener {
-            if(!multiSelection) {
+            if (!multiSelection) {
                 multiSelection = true
                 requireActivity.startActionMode(this)
                 applySelection(holder, currentRecipe)
@@ -67,7 +66,6 @@ class FavoriteRecipesAdapter(
                 multiSelection = false
                 false
             }
-
         }
     }
 
@@ -91,8 +89,8 @@ class FavoriteRecipesAdapter(
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 
-    private fun applyActionModeTitle(){
-        when(selectedRecipes.size) {
+    private fun applyActionModeTitle() {
+        when (selectedRecipes.size) {
             0 -> {
                 mActionMode.finish()
             }
@@ -109,13 +107,12 @@ class FavoriteRecipesAdapter(
         return favoriteRecipes.size
     }
 
-
     class MyViewHolder(private val binding: FavoriteRecipesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favoritiesEntity: FavoritiesEntity) {
             binding.favoritesEntity = favoritiesEntity
-            binding.executePendingBindings()  // basically update all views
+            binding.executePendingBindings() // basically update all views
         }
 
         companion object {
@@ -139,16 +136,16 @@ class FavoriteRecipesAdapter(
     }
 
     override fun onActionItemClicked(mode: ActionMode?, menu: MenuItem?): Boolean {
-        if(menu?.itemId == R.id.delete_favorite_recipe_menu) {
+        if (menu?.itemId == R.id.delete_favorite_recipe_menu) {
             selectedRecipes.forEach {
                 mainViewModel.deleteFavoriteRecipe(it)
             }
             showSnackBar(
-                if(selectedRecipes.size == 1) "Recipe removed."
+                if (selectedRecipes.size == 1) "Recipe removed."
                 else "${selectedRecipes.size} Recipe(s) removed."
             )
 
-            //clear the atributes
+            // clear the atributes
             multiSelection = false
             selectedRecipes.clear()
             mode?.finish()
@@ -183,14 +180,13 @@ class FavoriteRecipesAdapter(
             rootView,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Ok"){}
+        ).setAction("Ok") {}
             .show()
     }
 
     fun clearContextualActionMode() {
         if (this::mActionMode.isInitialized) {
-           mActionMode.finish()
+            mActionMode.finish()
         }
     }
-
 }

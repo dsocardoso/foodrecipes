@@ -2,7 +2,6 @@ package br.com.dsocardoso.foodrecipes.viewmodels
 
 import android.app.Application
 import android.widget.Toast
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope

@@ -1,11 +1,11 @@
 package br.com.dsocardoso.foodrecipes.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.navArgs
@@ -81,15 +81,14 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
-        mainViewModel.readFavoriteRecipes.observe(this,{ favoritiesEntity ->
+        mainViewModel.readFavoriteRecipes.observe(this, { favoritiesEntity ->
             try {
                 for (savedRecipes in favoritiesEntity) {
-                    if(savedRecipes.result.recipeid == args.result.recipeid) {
+                    if (savedRecipes.result.recipeid == args.result.recipeid) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipes.id
                         recipeSaved = true
-                    }
-                    else {
+                    } else {
                         changeMenuItemColor(menuItem, R.color.white)
                     }
                 }
@@ -128,7 +127,7 @@ class DetailsActivity : AppCompatActivity() {
             detailsLayout,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Ok"){}
+        ).setAction("Ok") {}
             .show()
     }
 

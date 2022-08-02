@@ -63,7 +63,7 @@ class FoodJokeBinding {
             apiResponse: NetworkResult<FoodJoke>?,
             database: List<FoodJokeEntity>?
         ) {
-            if(database != null) {
+            if (database != null) {
                 if (database.isEmpty()) {
                     view.visibility = View.VISIBLE
                     if (view is TextView) {

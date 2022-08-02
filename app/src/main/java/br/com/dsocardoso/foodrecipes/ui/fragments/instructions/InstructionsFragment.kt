@@ -1,11 +1,11 @@
 package br.com.dsocardoso.foodrecipes.ui.fragments.instructions
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.model.Result
 import br.com.dsocardoso.foodrecipes.util.Constants
@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.fragment_instructions.view.*
 class InstructionsFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -29,5 +30,4 @@ class InstructionsFragment : Fragment() {
 
         return view
     }
-
 }

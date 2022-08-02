@@ -13,5 +13,4 @@ class FoodJokeEntity(
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = 0
-
 }

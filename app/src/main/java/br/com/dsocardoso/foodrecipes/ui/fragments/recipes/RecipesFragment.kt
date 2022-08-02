@@ -52,7 +52,8 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
@@ -61,9 +62,8 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.mainViewModel = mainViewModel
         setupRecyclerView()
 
-        //adding menu
+        // adding menu
         setHasOptionsMenu(true)
-
 
         recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
             recipesViewModel.backOnline = it
@@ -83,7 +83,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
         // float action button
         binding.recipesFab.setOnClickListener {
-            if(recipesViewModel.networkStatus) {
+            if (recipesViewModel.networkStatus) {
                 findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
             } else {
                 recipesViewModel.showNetworkStatus()
@@ -101,24 +101,23 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     // inflate menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-       inflater.inflate(R.menu.recipes_menu, menu)
+        inflater.inflate(R.menu.recipes_menu, menu)
 
         val search = menu.findItem(R.id.menu_search)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
-
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query != null) {
+        if (query != null) {
             searchApiData(query)
         }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-       return true
+        return true
     }
 
     private fun readDatabase() {
@@ -186,14 +185,14 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         })
     }
 
-    private fun loadDataFromCache(){
-       lifecycleScope.launch {
-           mainViewModel.readRecipes.observe(viewLifecycleOwner,{ database ->
-               if(database.isNotEmpty()){
-                   mAdapter.setData(database[0].foodRecipe)
-               }
-           })
-       }
+    private fun loadDataFromCache() {
+        lifecycleScope.launch {
+            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()) {
+                    mAdapter.setData(database[0].foodRecipe)
+                }
+            })
+        }
     }
 
     private fun showShimmerEffect() {
@@ -208,5 +207,4 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onDestroy()
         _binding = null
     }
-
 }

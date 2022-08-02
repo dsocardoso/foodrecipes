@@ -89,7 +89,6 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             val backOnline = preference[PreferenceKeys.backOnLine] ?: false
             backOnline
         }
-
 }
 
 data class MealAndDietType(
