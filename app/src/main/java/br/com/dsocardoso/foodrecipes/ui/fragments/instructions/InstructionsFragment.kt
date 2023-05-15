@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import br.com.dsocardoso.foodrecipes.R
+import br.com.dsocardoso.foodrecipes.databinding.FragmentInstructionsBinding
+import br.com.dsocardoso.foodrecipes.delegate.viewBinding
 import br.com.dsocardoso.foodrecipes.model.Result
 import br.com.dsocardoso.foodrecipes.util.Constants
-import kotlinx.android.synthetic.main.fragment_instructions.view.*
+
 
 class InstructionsFragment : Fragment() {
+
+    private val binding by viewBinding(FragmentInstructionsBinding::bind)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +27,9 @@ class InstructionsFragment : Fragment() {
         val args = arguments
         val myBundle: Result? = args?.getParcelable(Constants.RECIPE_RESULT_KEY)
 
-        view.instructions_webView.webViewClient = object : WebViewClient() {}
+        binding.instructionsWebView.webViewClient = object : WebViewClient() {}
         val webSiteUrl: String = myBundle!!.sourceUrl
-        view.instructions_webView.loadUrl(webSiteUrl)
+        binding.instructionsWebView.loadUrl(webSiteUrl)
 
         return view
     }

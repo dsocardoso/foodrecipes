@@ -12,6 +12,8 @@ import androidx.navigation.navArgs
 import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.adapters.PagerAdapter
 import br.com.dsocardoso.foodrecipes.data.database.entities.FavoritiesEntity
+import br.com.dsocardoso.foodrecipes.databinding.ActivityDetailsBinding
+import br.com.dsocardoso.foodrecipes.delegate.viewBinding
 import br.com.dsocardoso.foodrecipes.ui.fragments.ingredients.IngredientsFragment
 import br.com.dsocardoso.foodrecipes.ui.fragments.instructions.InstructionsFragment
 import br.com.dsocardoso.foodrecipes.ui.fragments.overview.OverviewFragment
@@ -19,11 +21,12 @@ import br.com.dsocardoso.foodrecipes.util.Constants.Companion.RECIPE_RESULT_KEY
 import br.com.dsocardoso.foodrecipes.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_details.*
+
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
+    private val binding: ActivityDetailsBinding by viewBinding()
     private val args by navArgs<DetailsActivityArgs>()
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -34,8 +37,8 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        setSupportActionBar(toolbar)
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fragments = ArrayList<Fragment>()
@@ -58,8 +61,8 @@ class DetailsActivity : AppCompatActivity() {
             supportFragmentManager
         )
 
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,22 +84,21 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
-        mainViewModel.readFavoriteRecipes.observe(this,{ favoritiesEntity ->
+        mainViewModel.readFavoriteRecipes.observe(this) { favoritiesEntity ->
             try {
                 for (savedRecipes in favoritiesEntity) {
-                    if(savedRecipes.result.recipeid == args.result.recipeid) {
+                    if (savedRecipes.result.recipeid == args.result.recipeid) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = savedRecipes.id
                         recipeSaved = true
-                    }
-                    else {
+                    } else {
                         changeMenuItemColor(menuItem, R.color.white)
                     }
                 }
             } catch (e: Exception) {
                 Log.d("DetailsActivity", e.message.toString())
             }
-        })
+        }
     }
 
     private fun saveToFavorites(item: MenuItem) {
@@ -125,7 +127,7 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun showSnackBar(message: String) {
         Snackbar.make(
-            detailsLayout,
+            binding.detailsLayout,
             message,
             Snackbar.LENGTH_SHORT
         ).setAction("Ok"){}
@@ -133,6 +135,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
-        item.icon.setTint(ContextCompat.getColor(this, color))
+        item.icon?.setTint(ContextCompat.getColor(this, color))
     }
 }

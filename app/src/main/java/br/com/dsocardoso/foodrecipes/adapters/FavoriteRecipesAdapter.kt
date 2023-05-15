@@ -13,12 +13,30 @@ import br.com.dsocardoso.foodrecipes.ui.fragments.favorites.FavoriteRecipesFragm
 import br.com.dsocardoso.foodrecipes.util.RecipesDiffUtil
 import br.com.dsocardoso.foodrecipes.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.favorite_recipes_row_layout.view.*
+
 
 class FavoriteRecipesAdapter(
     private val requireActivity: FragmentActivity,
     private val mainViewModel: MainViewModel
 ) : RecyclerView.Adapter<FavoriteRecipesAdapter.MyViewHolder>(), ActionMode.Callback {
+
+    class MyViewHolder(private val binding: FavoriteRecipesRowLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(favoritiesEntity: FavoritiesEntity) {
+            binding.favoritesEntity = favoritiesEntity
+            binding.executePendingBindings()  // basically update all views
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): MyViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = FavoriteRecipesRowLayoutBinding.inflate(layoutInflater, parent, false)
+                return MyViewHolder(binding)
+            }
+        }
+    }
+
 
     private var multiSelection = false
     private lateinit var mActionMode: ActionMode
@@ -28,9 +46,12 @@ class FavoriteRecipesAdapter(
     private var myViewHolders = arrayListOf<MyViewHolder>()
     private var favoriteRecipes = emptyList<FavoritiesEntity>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder.from(parent)
+       return MyViewHolder(
+           FavoriteRecipesRowLayoutBinding.inflate(
+               LayoutInflater.from(parent.context), parent, false
+           )
+       )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -43,7 +64,7 @@ class FavoriteRecipesAdapter(
          * Single Click Listener
          * onClick Listener for redirect to DetailsActivity
          */
-        holder.itemView.favoriteRecipesRowLayout.setOnClickListener {
+        holder.itemView.setOnClickListener {
             if (multiSelection) {
                 applySelection(holder, currentRecipe)
             } else {
@@ -57,7 +78,7 @@ class FavoriteRecipesAdapter(
         /**
          * Long Click Listener
          */
-        holder.itemView.favoriteRecipesRowLayout.setOnLongClickListener {
+        holder.itemView.setOnLongClickListener {
             if(!multiSelection) {
                 multiSelection = true
                 requireActivity.startActionMode(this)
@@ -84,11 +105,11 @@ class FavoriteRecipesAdapter(
     }
 
     private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-        holder.itemView.favoriteRecipesRowLayout.setBackgroundColor(
+        holder.itemView.setBackgroundColor(
             ContextCompat.getColor(requireActivity, backgroundColor)
         )
-        holder.itemView.favorite_row_cardView.strokeColor =
-            ContextCompat.getColor(requireActivity, strokeColor)
+//        holder.itemView.favorite_row_cardView.strokeColor =
+//            ContextCompat.getColor(requireActivity, strokeColor)
     }
 
     private fun applyActionModeTitle(){
@@ -107,24 +128,6 @@ class FavoriteRecipesAdapter(
 
     override fun getItemCount(): Int {
         return favoriteRecipes.size
-    }
-
-
-    class MyViewHolder(private val binding: FavoriteRecipesRowLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(favoritiesEntity: FavoritiesEntity) {
-            binding.favoritesEntity = favoritiesEntity
-            binding.executePendingBindings()  // basically update all views
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): MyViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = FavoriteRecipesRowLayoutBinding.inflate(layoutInflater, parent, false)
-                return MyViewHolder(binding)
-            }
-        }
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {

@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import br.com.dsocardoso.foodrecipes.R
+import br.com.dsocardoso.foodrecipes.databinding.FragmentOverviewBinding
+import br.com.dsocardoso.foodrecipes.delegate.viewBinding
 import br.com.dsocardoso.foodrecipes.model.Result
 import br.com.dsocardoso.foodrecipes.util.Constants.Companion.RECIPE_RESULT_KEY
 import coil.load
-import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.jsoup.Jsoup
 
 
 class OverviewFragment : Fragment() {
 
-
+    private val binding by viewBinding(FragmentOverviewBinding::bind)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,25 +35,24 @@ class OverviewFragment : Fragment() {
 
     private fun setFields(view: View, myBundle: Result?) {
         with(view) {
-
-            main_imageView.load(myBundle?.image)
-            title_textView.text = myBundle?.title
-            likes_textView.text = myBundle?.aggregateLikes.toString()
-            time_textView.text = myBundle?.readyInMinutes.toString()
+            binding.mainImageView.load(myBundle?.image)
+            binding.titleTextView.text = myBundle?.title
+            binding.likesTextView.text = myBundle?.aggregateLikes.toString()
+            binding.timeTextView.text = myBundle?.readyInMinutes.toString()
 
             myBundle?.summary.let {
                 val summary = Jsoup.parse(it).text()
-                summary_textView.text = summary
+                binding.summaryTextView.text = summary
             }
 
             if (myBundle?.vegetarian == true) {
-                vegetarian_imageView.setColorFilter(
+                binding.vegetarianImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                vegetarian_textView.setTextColor(
+                binding.vegetarianTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
@@ -61,13 +61,13 @@ class OverviewFragment : Fragment() {
             }
 
             if (myBundle?.vegan == true) {
-                vegan_imageView.setColorFilter(
+                binding.veganImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                vegan_textView.setTextColor(
+                binding.veganTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
@@ -76,13 +76,13 @@ class OverviewFragment : Fragment() {
             }
 
             if (myBundle?.cheap == true) {
-                cheap_imageView.setColorFilter(
+                binding.cheapImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                cheap_textView.setTextColor(
+                binding.cheapTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
@@ -91,13 +91,13 @@ class OverviewFragment : Fragment() {
             }
 
             if (myBundle?.dairyFree == true) {
-                dairy_free_imageView.setColorFilter(
+                binding.dairyFreeImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                dairy_free_textView.setTextColor(
+                binding.dairyFreeTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
@@ -106,13 +106,13 @@ class OverviewFragment : Fragment() {
             }
 
             if (myBundle?.glutenFree == true) {
-                gluten_free_imageView.setColorFilter(
+                binding.glutenFreeImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                gluten_free_textView.setTextColor(
+                binding.glutenFreeTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
@@ -121,13 +121,13 @@ class OverviewFragment : Fragment() {
             }
 
             if (myBundle?.veryHealthy == true) {
-                healthy_imageView.setColorFilter(
+                binding.healthyImageView.setColorFilter(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green
                     )
                 )
-                healthy_textView.setTextColor(
+                binding.healthyTextView.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
                         R.color.green

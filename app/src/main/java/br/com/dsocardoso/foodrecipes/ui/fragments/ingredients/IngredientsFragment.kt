@@ -1,20 +1,22 @@
 package br.com.dsocardoso.foodrecipes.ui.fragments.ingredients
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dsocardoso.foodrecipes.R
 import br.com.dsocardoso.foodrecipes.adapters.IngredientsAdapter
+import br.com.dsocardoso.foodrecipes.databinding.FragmentIngredientsBinding
+import br.com.dsocardoso.foodrecipes.delegate.viewBinding
 import br.com.dsocardoso.foodrecipes.model.Result
 import br.com.dsocardoso.foodrecipes.util.Constants.Companion.RECIPE_RESULT_KEY
-import kotlinx.android.synthetic.main.fragment_ingredients.view.*
 
 
 class IngredientsFragment : Fragment() {
 
+    private val binding by viewBinding(FragmentIngredientsBinding::bind)
     private val mAdapter: IngredientsAdapter by lazy { IngredientsAdapter() }
 
     override fun onCreateView(
@@ -34,7 +36,7 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun setupRecyclerView(view: View) {
-        view.ingredients_recyclerView.adapter = mAdapter
-        view.ingredients_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.ingredientsRecyclerView.adapter = mAdapter
+        binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 }
