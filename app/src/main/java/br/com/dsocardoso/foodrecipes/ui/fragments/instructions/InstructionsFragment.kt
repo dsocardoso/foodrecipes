@@ -22,16 +22,18 @@ class InstructionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_instructions, container, false)
+       return inflater.inflate(R.layout.fragment_instructions, container, false)
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val args = arguments
         val myBundle: Result? = args?.getParcelable(Constants.RECIPE_RESULT_KEY)
 
         binding.instructionsWebView.webViewClient = object : WebViewClient() {}
         val webSiteUrl: String = myBundle!!.sourceUrl
         binding.instructionsWebView.loadUrl(webSiteUrl)
-
-        return view
     }
 
 }

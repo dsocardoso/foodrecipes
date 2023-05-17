@@ -24,15 +24,16 @@ class IngredientsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_ingredients, container, false)
+        return inflater.inflate(R.layout.fragment_ingredients, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val args = arguments
         val myBundle: Result? = args?.getParcelable(RECIPE_RESULT_KEY)
 
         setupRecyclerView(view)
         myBundle?.extendedIngredients?.let { mAdapter.setData(it) }
-
-        return view
     }
 
     private fun setupRecyclerView(view: View) {
