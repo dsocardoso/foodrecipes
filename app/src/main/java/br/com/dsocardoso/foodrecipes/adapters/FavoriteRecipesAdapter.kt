@@ -20,21 +20,13 @@ class FavoriteRecipesAdapter(
     private val mainViewModel: MainViewModel
 ) : RecyclerView.Adapter<FavoriteRecipesAdapter.MyViewHolder>(), ActionMode.Callback {
 
-    class MyViewHolder(private val binding: FavoriteRecipesRowLayoutBinding) :
+    class MyViewHolder(val binding: FavoriteRecipesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(favoritiesEntity: FavoritiesEntity) {
             binding.favoritesEntity = favoritiesEntity
             binding.executePendingBindings()  // basically update all views
         }
-
-//        companion object {
-//            fun from(parent: ViewGroup): MyViewHolder {
-//                val layoutInflater = LayoutInflater.from(parent.context)
-//                val binding = FavoriteRecipesRowLayoutBinding.inflate(layoutInflater, parent, false)
-//                return MyViewHolder(binding)
-//            }
-//        }
     }
 
 
@@ -64,7 +56,7 @@ class FavoriteRecipesAdapter(
          * Single Click Listener
          * onClick Listener for redirect to DetailsActivity
          */
-        holder.itemView.setOnClickListener {
+        holder.binding.favoriteRecipesRowLayout.setOnClickListener {
             if (multiSelection) {
                 applySelection(holder, currentRecipe)
             } else {
@@ -78,7 +70,7 @@ class FavoriteRecipesAdapter(
         /**
          * Long Click Listener
          */
-        holder.itemView.setOnLongClickListener {
+        holder.binding.favoriteRecipesRowLayout.setOnLongClickListener {
             if(!multiSelection) {
                 multiSelection = true
                 requireActivity.startActionMode(this)
@@ -108,7 +100,8 @@ class FavoriteRecipesAdapter(
         holder.itemView.setBackgroundColor(
             ContextCompat.getColor(requireActivity, backgroundColor)
         )
-//       \
+        holder.binding.favoriteRowCardView.strokeColor =
+            ContextCompat.getColor(requireActivity, strokeColor)
     }
 
     private fun applyActionModeTitle(){

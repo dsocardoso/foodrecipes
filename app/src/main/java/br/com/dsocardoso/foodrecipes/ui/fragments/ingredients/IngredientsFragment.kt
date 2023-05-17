@@ -22,9 +22,10 @@ class IngredientsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ingredients, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,11 +33,11 @@ class IngredientsFragment : Fragment() {
         val args = arguments
         val myBundle: Result? = args?.getParcelable(RECIPE_RESULT_KEY)
 
-        setupRecyclerView(view)
+        setupRecyclerView()
         myBundle?.extendedIngredients?.let { mAdapter.setData(it) }
     }
 
-    private fun setupRecyclerView(view: View) {
+    private fun setupRecyclerView() {
         binding.ingredientsRecyclerView.adapter = mAdapter
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

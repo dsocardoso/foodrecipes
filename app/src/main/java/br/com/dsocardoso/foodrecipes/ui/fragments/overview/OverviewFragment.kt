@@ -31,10 +31,10 @@ class OverviewFragment : Fragment() {
         val args = arguments
         val myBundle: Result? = args?.getParcelable(RECIPE_RESULT_KEY)
 
-        setFields(view, myBundle)
+        setFields(myBundle)
     }
 
-    private fun setFields(view: View, myBundle: Result?) {
+    private fun setFields(myBundle: Result?) {
         with(view) {
             binding.mainImageView.load(myBundle?.image)
             binding.titleTextView.text = myBundle?.title
