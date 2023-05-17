@@ -28,13 +28,13 @@ class FavoriteRecipesAdapter(
             binding.executePendingBindings()  // basically update all views
         }
 
-        companion object {
-            fun from(parent: ViewGroup): MyViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = FavoriteRecipesRowLayoutBinding.inflate(layoutInflater, parent, false)
-                return MyViewHolder(binding)
-            }
-        }
+//        companion object {
+//            fun from(parent: ViewGroup): MyViewHolder {
+//                val layoutInflater = LayoutInflater.from(parent.context)
+//                val binding = FavoriteRecipesRowLayoutBinding.inflate(layoutInflater, parent, false)
+//                return MyViewHolder(binding)
+//            }
+//        }
     }
 
 
@@ -108,8 +108,7 @@ class FavoriteRecipesAdapter(
         holder.itemView.setBackgroundColor(
             ContextCompat.getColor(requireActivity, backgroundColor)
         )
-//        holder.itemView.favorite_row_cardView.strokeColor =
-//            ContextCompat.getColor(requireActivity, strokeColor)
+//       \
     }
 
     private fun applyActionModeTitle(){
