@@ -25,8 +25,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setTheme(R.style.Theme_FoodRecipes)
+        //setTheme(R.style.Theme_FoodRecipes)
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         navController = findNavController(R.id.navHostFragment)
